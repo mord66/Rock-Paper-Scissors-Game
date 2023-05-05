@@ -9,10 +9,6 @@ let playerScore = 0;
 
 function playRound (compChoice, playerChoice){
 
-    /*playerChoice = (prompt("Rock, paper or scissors?")).toLowerCase();
-    while (items.includes(playerChoice) == false){
-        playerChoice = (prompt("Invalid choice!\nRock, paper or scissors?")).toLowerCase(); 
-    }*/
     compChoice = getComputerChoice();
     console.log("Player chose: " + playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1));
     console.log("Computer chose: " + compChoice.charAt(0).toUpperCase() + compChoice.slice(1));
@@ -49,7 +45,16 @@ const rockButton = document.getElementById("rock");
 const paperButton = document.getElementById("paper");
 const scissorsButton = document.getElementById("scissors");
 const choiceButtons = document.getElementById("choice-buttons");
+const startButton = document.getElementById("StartButton");
+
+startButton.addEventListener("click", function() {
+    choiceButtons.style.display = "flex";
+    startButton.style.display = "none";
+    document.getElementsByClassName("splash-screen")[0].style.display = "none";
+    document.getElementsByClassName("choice-score")[0].style.display = "flex";
+});
 
 choiceButtons.addEventListener("click", function(e){
     playRound(getComputerChoice(), (e.target.id));
 });
+
