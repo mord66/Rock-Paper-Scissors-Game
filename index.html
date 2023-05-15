@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -8,7 +8,11 @@
 
     </head>
     <body>
-        
+        <audio>
+            <source id="scissors" src="audio/scissors.mp3"></source>
+            <source id="rockSound" src="audio/rock.mp3"></source>
+            <source id="paper" src="audio/paper.mp3"></source>
+        </audio>
         <div id="main-content">
             <div class="container">
                 
@@ -16,46 +20,38 @@
                     <div id="choice-buttons" class="button-container">
                         <h1 class="player">MONKEY</h1>
                         <div id="image-holder"><img id="avatar" src="images/player.jpg" height="200" width="250"></div>
-                        <button id="rock"><img id="icon" src="images/rockright.jpg"></button>
-                        <button id="paper"><img id="icon" src="images/paperright.jpg"></button>
-                        <button id="scissors"><img id="icon" src="images/scissorsright.jpg"></button>
+                        <button id="rock" class="monkeBtn"><img id="rock" class="icon" src="images/rockright.png"></button>
+                        <button id="paper" class="monkeBtn"><img id="paper" class="icon" src="images/paperright.png"></button>
+                        <button id="scissors" class="monkeBtn"><img id="scissors" class="icon" src="images/scissorsright.png"></button>
                     </div>
                 </div>
 
                 <div class="mid-section">
                     <div class="mid-top">
-                        <div class="announce-bar">sdfsdfsdf</div>
+                        <div class="announce-bar"></div>
                         <div class="scores">
-                            <div class="player-score">5</div>
+                            <div class="player-score">0</div>
                             <div class="line"></div>
-                            <div class="computer-score">5</div>
+                            <div class="computer-score">0</div>
                         </div>
-     
+                    </div>
+                    <div class="mid-mid">
+                        <button class="playAgainButton"> Play Again!</button>
                     </div>
                     <div class="mid-bottom">
-                        <div class="round-count">234234</div>
+                        <div class="round-count">1</div>
                     </div>
                 </div>
 
                 <div id="computer-container">
-                    <div id="choice-buttons" class="button-container">
+                    <div id="choice-buttons-computer" class="button-container">
                         <h1 class="player">ROBOT</h1>
                         <div id="image-holder"><img id="avatar" src="images/computer.jpg" height="200" width="250"></div>
-                        <button id="rock"><img id="icon" src="images/rockleft.jpg"></button>
-                        <button id="paper"><img id="icon" src="images/paperleft.jpg" ></button>
-                        <button id="scissors"><img id="icon" src="images/scissorsleft.jpg"></button>
+                        <button id="rockc"><img class="icon" src="images/rockleft.png"></button>
+                        <button id="paperc"><img class="icon" src="images/paperleft.png" ></button>
+                        <button id="scissorsc"><img class="icon" src="images/scissorsleft.png"></button>
                     </div>
                 </div>
-
-            <!-- <div class="splash-screen">
-                    <h1>Welcome to Morde's Rock-Paper-Scissors Game</h1>
-                    <input id="StartButton" type="button" value="Start"/>
-                </div>
-                <div class="announceBar">as</div>
-                <div class="choice-score">
-                    <div class="player">bok</div>
-                    <div class="computer">bok</div>
-                </div> -->
             </div>
         </div>
     </body>

@@ -1,6 +1,7 @@
 html{
     height: 100%;
     width: 100%;
+    margin-bottom: 65px;
 }
 
 body{
@@ -79,8 +80,8 @@ body{
     color: black;
     background-color: white;
     font-size: 36px;
-    height: 60px;
-    width: 500px;
+    height: 50px;
+    width: 600px;
     align-self: center;
     border: double black 9px;
     border-radius: 20px;
@@ -97,6 +98,7 @@ body{
     border: solid #36454F 8px;
     background-color: white;
     border-radius: 50%;
+    text-align: center;
 }
 
 .mid-bottom{
@@ -137,18 +139,28 @@ button{
 
 }
 
-button:hover{
+.monkeBtn:hover{
     background-color:#4CAF50;
     transform: scale(1.2);
 
 }
 
+.playAgainButton{
+    border:solid 6px;
+    border-color:gray;
+    font-size: 36px;
+    display:none;
+}
+
+.playAgainButton:hover{
+    transform: scale(1.2);
+}
 
 #choice-buttons {
     display: flex;
 }
 
-#icon{
+.icon{
     width:50px;
     height: 50px;
 }
@@ -170,5 +182,3 @@ h1 {
     margin-top: 15px;
     margin-bottom: 40px;
 }
-
-
