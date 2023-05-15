@@ -4,57 +4,94 @@ function getComputerChoice() {
     return choice;
 }
 
-let compScore = 0;
-let playerScore = 0;
+var playerScore = 0;
+var compScore = 0;
+var roundNumber = 0;
+var playerChoice="";
+
+const monkeButtons = document.querySelectorAll(".monkeBtn")
+const announceBar = document.querySelector(".announce-bar");
+const allButtons = document.getElementsByTagName("button");
+const playerScoreBoard = document.querySelector(".player-score");
+const compScoreBoard = document.querySelector(".computer-score");
+const roundBar = document.querySelector(".round-count");
+const midBottom = document.querySelector(".mid-bottom");
+const playAgainButton = document.querySelector(".playAgainButton");
+
 
 function playRound (compChoice, playerChoice){
-
     compChoice = getComputerChoice();
-    console.log("Player chose: " + playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1));
-    console.log("Computer chose: " + compChoice.charAt(0).toUpperCase() + compChoice.slice(1));
-
-    if (playerChoice == compChoice){
-        announceBar.textContent="It's a tie!";
-    }
-    else if (
-    (compChoice == "paper" && playerChoice == "rock")||
-    (compChoice == "rock" && playerChoice == "scissors")||
-    (compChoice == "scissors" && playerChoice == "paper")
+    roundNumber += 1;
+    roundBar.textContent = roundNumber
+    if (
+        (playerChoice == "rock" && compChoice == "scissors") ||
+        (playerChoice == "paper" && compChoice == "rock")||
+        (playerChoice == "scissors" && compChoice == "paper")
     ) {
-        announceBar.textContent="Computer won the round!";
-        compScore = compScore +1;
+        playerScore += 1
+        playerScoreBoard.textContent = playerScore;
+        playerChoice = firstCharUpper(playerChoice);
+        announceBar.textContent = "You win!" + " " + " " + (playerChoice) + " " + "beats" + " " + (compChoice);
+        if (playerScore == 5){
+            endGame("You")
+        };
+    
+    }
+    else if (playerChoice == compChoice){
+        announceBar.textContent = ` It's a tie! You both chose ${playerChoice}`;
     }
     else {
-        announceBar.textContent="Player won the round!";
-        playerScore = playerScore + 1;
-
+        compScore += 1
+        compScoreBoard.textContent = compScore;
+        compChoice = firstCharUpper(compChoice);
+        announceBar.textContent = "You lose!" + " " + " " + (compChoice) + " " + "beats" + " " + (playerChoice);
+        if (compScore == 5){
+            endGame("Computer");
+        }
     }
-    }
-
-function game() {
-        playRound();
-        console.log(playerScore);
-        console.log(compScore);
 }
 
-const announceBar = document.querySelector(".announceBar");
-announceBar.textContent=""
+function firstCharUpper(string){
+    let firstLetter = string.charAt(0);
+    firstLetter = firstLetter.toUpperCase();
+    capitalizedString = firstLetter + string.slice(1);
+    return capitalizedString;
+}
 
+function endGame(winner){
+    for (button of monkeButtons){
+        button.disabled = true;
+        button.classList.remove("monkeBtn");
+    }
+    playAgainButton.style.display="block";
+    announceBar.textContent = ` Game Over! ${winner} won the game`
 
-const rockButton = document.getElementById("rock");
-const paperButton = document.getElementById("paper");
-const scissorsButton = document.getElementById("scissors");
-const choiceButtons = document.getElementById("choice-buttons");
-const startButton = document.getElementById("StartButton");
+}
 
-startButton.addEventListener("click", function() {
-    choiceButtons.style.display = "flex";
-    startButton.style.display = "none";
-    document.getElementsByClassName("splash-screen")[0].style.display = "none";
-    document.getElementsByClassName("choice-score")[0].style.display = "flex";
+function playAgain(){
+    playerScore = 0;
+    compScore = 0;
+    roundNumber = 1;
+    compScoreBoard.textContent = compScore;
+    playerScoreBoard.textContent = playerScore;
+    roundBar.textContent = roundNumber;
+    announceBar.textContent = " ";
+
+    for (button of monkeButtons){
+        button.disabled = false;
+        button.classList.add("monkeBtn");
+    
+}
+    playAgainButton.style.display = "none";
+}
+
+for (button of monkeButtons) {
+    button.addEventListener("click", function(e) {
+        playerChoice = e.target.id
+        playRound(getComputerChoice, playerChoice)
+    })
+}
+
+playAgainButton.addEventListener("click", function(){
+    playAgain();
 });
-
-choiceButtons.addEventListener("click", function(e){
-    playRound(getComputerChoice(), (e.target.id));
-});
-
